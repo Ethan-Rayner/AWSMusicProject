@@ -1,4 +1,2 @@
-As I decided to switch from Java to Python mid way through the assignment, tasks 1 and 2 have been split from tasks 3, 4 and 5
-
-- Files pertaining to task 1 and 2 are stored in java com.amazonaws.samples
-- All other code files are contained within Back-End, all html files are contained within templates and the python code is all inside main.py
+All code files relevant to the website running on an ec2 instance are contained within the Back-End directory. 
+As this was complteted for a university assignment, there is also code written in Java that is not relevant to the website functionion on an EC2 instace found in
