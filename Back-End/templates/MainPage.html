@@ -1,0 +1,70 @@
+<html>
+<body>
+
+<h2>User Area</h2>
+<p class=error><strong>Username:</strong> {{ username }}
+<form action="/logout" method="get">
+    <input type="submit" value="Logout" />
+</form>
+
+
+<h2>Subscription Area</h2>
+<div id="subscriptions">
+{% for song in subscribed %}
+	<h3>{{ song.title }}</h3>
+	<p>{{ song.artist }} ({{ song.year }})</p>
+	<img src="{{ song.image_url }}" alt="{{ song.artist }}">
+	<form method="POST" action="/unsubscribe">
+		<input type="hidden" name="titleSubbed" id="titleSubbed" value="{{ song.title }}">
+		<input type="hidden" name="artist" value="{{ song.artist }}">
+		<input type="hidden" name="year" value="{{ song.year }}">
+		<input type="hidden" name="image_url" value="{{ song.image_url }}">
+		<input type="submit" value="remove">
+	</form>
+{% endfor %}
+</div>
+
+
+
+<br><br>
+
+------------------------------------------------------------------------------------------
+<br><br>
+
+<h2>Query Area</h2>
+<form action="/query" method="post">
+	<label for="title">Title</label>
+	<input type="text" id="title" name="title" placeholder="Title">
+	
+	<label for="artist">Artist</label>
+	<input type="text" id="artist" name="artist" placeholder="Artist">
+	
+	<label for="year">Year</label>
+	<input type="text" id="year" name="year" placeholder="Year">
+
+	<input type="submit" value ="Query">
+</form>
+
+	{% if queryError %}
+    <p class=queryError><strong>Error:</strong> {{ queryError }}
+	{% endif %}
+	
+<div id="results">
+{% for music in results %}
+	<h3>{{ music.title }}</h3>
+	<p>{{ music.artist }} ({{ music.year }})</p>
+	<img src="{{ music.image_url }}" alt="{{ music.artist }}">
+	<form method="POST" action="/subscribe">
+		<input type="hidden" name="titleSubbed" id="titleSubbed" value="{{ music.title }}">
+		<input type="hidden" name="artist" value="{{ music.artist }}">
+		<input type="hidden" name="year" value="{{ music.year }}">
+		<input type="hidden" name="image_url" value="{{ music.image_url }}">
+		<input type="submit" value="Subscribe">
+	</form>
+{% endfor %}
+</div>
+	
+
+
+</body>
+</html>
